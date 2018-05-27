@@ -5,7 +5,9 @@ import consultant_work_downloader
 def main():
     print_header()
     folder = get_or_create_download_directory()
-    work_count = get_integer('How much work do you want? (Default is 8) ')
+    print()
+    work_count = get_integer('How much work do you want? (Enter number of images to download; default is 8) ')
+    print()
     download_work(folder, work_count)
     # display folder
 
@@ -26,8 +28,10 @@ def get_integer(question):
         if ask == 'exit':
             print('Exiting...')
             exit()
+        elif not ask:
+            return 8
         else:
-            print('Please enter an integer')
+            print('Please enter an integer.')
             return get_integer(question)
 
 
@@ -39,9 +43,9 @@ def get_or_create_download_directory():
     if not os.path.exists(full_path) or not os.path.isdir(full_path):
         print('Creating new folder at {}'.format(full_path))
         os.mkdir(full_path)
-        print('The new "{}" folder is now in your working directory.'.format(dirname))
+        print('The new "{}" folder has been created in the same directory this file is in.'.format(dirname))
     else:
-        print('"{}" folder found in the working directory.'.format(dirname))
+        print('The "{}" folder has been found in the directory this file is in.'.format(dirname))
 
     return full_path
 
